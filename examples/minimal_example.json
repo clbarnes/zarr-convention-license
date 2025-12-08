@@ -10,6 +10,7 @@
         "name": "template:",
         "description": "Template convention for demonstrating Zarr convention metadata structure"
       }
-    ]
+    ],
+    "template:new_field": "minimal example"
   }
 }
