@@ -5,7 +5,7 @@
 - **Schema URL**: "https://raw.githubusercontent.com/zarr-conventions/template/refs/tags/v1/schema.json"
 - **Spec URL**: "https://github.com/zarr-conventions/template/blob/v1/README.md"
 - **Scope**: Array, Group
-- **Extension Maturity Classification****: Proposal
+- **Extension Maturity Classification**: Proposal
 - **Owner**: @your-github-handle, @another-github-handle
 
 The document explains the Template convention, which is a Zarr convention metadata. This is the place to add a short introduction.
