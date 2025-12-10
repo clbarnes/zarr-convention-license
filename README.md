@@ -102,6 +102,36 @@ This is the introduction for the purpose and the content of the XYZ Object...
 | y          | number | **REQUIRED**. Describe the required field... |
 | z          | number | **REQUIRED**. Describe the required field... |
 
+## Known Implementations
+
+This section helps potential implementers assess the convention's maturity and adoption, and provides a way for the community to collaborate on future revisions.
+
+### Libraries and Tools
+
+- **[Library/Tool Name](https://link-to-repo)** - Brief description of the implementation
+  - Language: Python/JavaScript/Rust/etc.
+  - Status: Experimental/Stable/Production
+  - Maintainer: @github-handle
+  - Since: Version X.Y or Date
+
+- **[Another Implementation](https://link)** - Description
+  - Language: Language
+  - Status: Status
+  - Maintainer: @handle
+  - Since: Version/Date
+
+### Datasets Using This Convention
+
+- **[Dataset Name](https://link-to-dataset)** - Description of the dataset and how it uses this convention
+- **[Another Dataset](https://link)** - Description
+
+### Resources
+
+- Tutorials, blog posts, or other resources demonstrating this convention
+- Community discussions or working groups
+
+*If you implement or use this convention, please add your implementation to this list by submitting a pull request.*
+
 ## Acknowledgements
 
 This template is based on the [STAC extensions template](https://github.com/stac-extensions/template/blob/main/README.md).
