@@ -8,23 +8,52 @@
 - **Extension Maturity Classification**: Proposal
 - **Owner**: @your-github-handle, @another-github-handle
 
-The document explains the Template convention, which is a Zarr convention metadata. This is the place to add a short introduction.
+## Description
+
+This convention defines [brief description of what this convention does]. All properties use the `template:` namespace prefix (or nested `template` object) and are placed at the root `attributes` level following the [Zarr Conventions Specification](https://github.com/zarr-conventions/zarr-conventions-spec).
+
+[Add more detailed description of the convention, its purpose, and how it fits into the Zarr ecosystem. Explain what problem it solves and how it should be used.]
 
 - Examples:
     - [Convention metadata only](examples/minimal_example.json)
     - [Key-prefixed pattern (recommended)](examples/key_prefixed_example.json)
     - [Nested pattern](examples/nested_example.json)
 
-## Convention Attributes
+## Motivation
 
-This convention defines attributes that appear at the root level of the Zarr `attributes` object. The convention can be used in these parts of the Zarr hierarchy:
+- **First benefit**: Explanation of the first key benefit this convention provides
+- **Second benefit**: Explanation of the second key benefit
+- **Third benefit**: Explanation of additional benefits
+- **Use case alignment**: How this convention aligns with common use cases in the domain
+
+## Convention Registration
+
+The convention must be registered in `zarr_conventions`:
+
+```json
+{
+  "zarr_conventions": [
+    {
+      "schema_url": "https://raw.githubusercontent.com/zarr-conventions/template/refs/tags/v1/schema.json",
+      "spec_url": "https://github.com/zarr-conventions/template/blob/v1/README.md",
+      "uuid": "00000000-0000-0000-0000-000000000000",
+      "name": "template:",
+      "description": "Brief description of the convention"
+    }
+  ]
+}
+```
+
+## Applicable To
+
+This convention can be used with these parts of the Zarr hierarchy:
 
 - [x] Group
 - [x] Array
 
-### Namespace Patterns
+## Properties
 
-To avoid attribute name collisions with other conventions, this convention supports two patterns:
+All properties are placed at the root `attributes` level. To avoid attribute name collisions with other conventions, this convention supports the following pattern [remove the pattern irrelevant for this convention]:
 
 #### 1. Key-Prefixed Pattern (Recommended)
 
