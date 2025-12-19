@@ -1,0 +1,20 @@
+{
+  "zarr_format": 3,
+  "node_type": "group",
+  "attributes": {
+    "zarr_conventions": [
+      {
+        "schema_url": "https://raw.githubusercontent.com/clbarnes/zarr-convention-license/refs/tags/v1/schema.json",
+        "spec_url": "https://github.com/clbarnes/zarr-convention-license/blob/v1/README.md",
+        "uuid": "b77365e5-2b0c-4141-b917-c03b7c68e935",
+        "name": "license",
+        "description": "License specifier for Zarr data"
+      }
+    ],
+    "license": [
+      {
+        "file": "path/to/license.txt"
+      }
+    ]
+  }
+}

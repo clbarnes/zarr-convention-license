@@ -1,11 +1,13 @@
 {
   "type": "module",
-  "name": "zarr-convention-metadata-template",
+  "name": "zarr-convention-license",
   "version": "0.1.0",
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "fmt": "prettier --write **/*.{json,js,md}"
   },
   "devDependencies": {
-    "ajv": "^8.12.0"
+    "ajv": "^8.17.1",
+    "prettier": "^3.7.4"
   }
 }
