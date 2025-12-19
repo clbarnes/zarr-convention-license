@@ -16,6 +16,12 @@ The license metadata exists in a field called `license` at the root `attributes`
 Communicating the license of data is applicable across ecosystems and applications,
 and should be made as low-friction as possible to facilitate re-use of FAIR data.
 
+If applied to a group, a license implicitly applies to all descendants of that group.
+It is the responsibility of entities sharing subsets of Zarr data (or links to it) that the license is accessible from the shared subset.
+If license metadata is defined in a descendant of a group with license metadata, it is considered to override the ancestor's:
+i.e. if the descendant license metadata should instead be additive, the ancestor license must be re-applied
+(e.g. using the `path` form to point to the ancestor explicitly).
+
 - Examples:
   - **RECOMMENDED**: [SPDX specifier](examples/spdx.json)
   - [URL to license text](examples/url.json)
