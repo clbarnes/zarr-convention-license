@@ -152,7 +152,7 @@ When resolving a `path` reference, implementations MUST take care to raise an er
 
 ### Libraries and Tools
 
-- **[zarrs_conventions_license(https://github.com/clbarnes/zarrs_conventions/tree/main/zarrs_conventions_license)** - Brief description of the implementation
+- **[zarrs_conventions_license](https://github.com/clbarnes/zarrs_conventions/tree/main/zarrs_conventions_license)** - zarrs / zarrs_conventions implementation
   - Language: Rust
   - Status: Experimental
   - Maintainer: @clbarnes
