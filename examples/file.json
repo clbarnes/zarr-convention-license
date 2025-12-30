@@ -11,10 +11,8 @@
         "description": "License specifier for Zarr data"
       }
     ],
-    "license": [
-      {
-        "file": "path/to/license.txt"
-      }
-    ]
+    "license": {
+      "file": "path/to/license.txt"
+    }
   }
 }

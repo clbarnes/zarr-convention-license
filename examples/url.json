@@ -11,10 +11,8 @@
         "description": "License specifier for Zarr data"
       }
     ],
-    "license": [
-      {
-        "url": "https://raw.githubusercontent.com/clbarnes/zarr-convention-license/refs/tags/v1/LICENSE"
-      }
-    ]
+    "license": {
+      "url": "https://raw.githubusercontent.com/clbarnes/zarr-convention-license/refs/tags/v1/LICENSE"
+    }
   }
 }

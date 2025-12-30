@@ -11,10 +11,8 @@
         "description": "License specifier for Zarr data"
       }
     ],
-    "license": [
-      {
-        "path": "path/to/group_or_array"
-      }
-    ]
+    "license": {
+      "path": "path/to/group_or_array"
+    }
   }
 }

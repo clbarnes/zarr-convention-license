@@ -25,7 +25,7 @@
           }
         },
         "license": {
-          "$ref": "#/$defs/licenseArray"
+          "$ref": "#/$defs/license"
         }
       },
       "required": [
@@ -79,16 +79,9 @@
       ],
       "additionalProperties": false
     },
-    "licenseArray": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/licenseEnum"
-      },
-      "description": "Licenses"
-    },
-    "licenseEnum": {
+    "license": {
       "type": "object",
-      "description": "XYZ Object containing x, y, z coordinates",
+      "description": "Licensing information for this data",
       "properties": {
         "spdx": {
           "type": "string",

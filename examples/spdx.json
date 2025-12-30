@@ -11,10 +11,8 @@
         "description": "License specifier for Zarr data"
       }
     ],
-    "license": [
-      {
-        "spdx": "MIT"
-      }
-    ]
+    "license": {
+      "spdx": "MIT"
+    }
   }
 }

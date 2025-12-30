@@ -19,8 +19,7 @@ and should be made as low-friction as possible to facilitate re-use of FAIR data
 If applied to a group, a license implicitly applies to all descendants of that group.
 It is the responsibility of entities sharing subsets of Zarr data (or links to it) that the license is accessible from the shared subset.
 If license metadata is defined in a descendant of a group with license metadata, it is considered to override the ancestor's:
-i.e. if the descendant license metadata should instead be additive, the ancestor license must be re-applied
-(e.g. using the `path` form to point to the ancestor explicitly).
+i.e. if the descendant license metadata should instead be additive, the ancestor license must be re-applied.
 
 - Examples:
   - **RECOMMENDED**: [SPDX specifier](examples/spdx.json)
@@ -62,31 +61,29 @@ This convention can be used with these parts of the Zarr hierarchy:
 
 ## Properties
 
-The `license` key at the root `attributes` level MUST be an array.
-The members of that array MUST be an object.
-The object SHOULD only have one key, as an [externally-tagged enum representation](https://serde.rs/enum-representations.html#externally-tagged).
-If more than one key is used, the license represented by the object MUST be internally consistent,
+The `license` key at the root `attributes` level MUST be an object.
+The object SHOULD only have one key, although multiple MAY be given if they represent identical licenses;
 i.e. do not use the "MIT" SPDX identifier and a URL to an Apache license.
+Implementations MAY ignore additional keys when resolving the license,
+but SHOULD retain the original multiple representations when writing back.
 
 An empty `license` array represents unlicensed data which SHOULD NOT be accessed without permission.
 
 **Convention metadata name**: `license`
 
-| Field Name | Type                                       | Description                 |
-| ---------- | ------------------------------------------ | --------------------------- |
-| license    | array of [License Object](#license-object) | **REQUIRED**. License enum. |
+| Field Name | Type                              | Description  |
+| ---------- | --------------------------------- | ------------ |
+| license    | [License Object](#license-object) | **REQUIRED** |
 
 **Example**:
 
 ```json
 {
   "attributes": {
-    "zarr_conventions": [{ "name": "license", "spec_url": "..." }],
-    "license": [
-      {
-        "spdx": "CC0"
-      }
-    ]
+    "zarr_conventions": [
+      { "name": "license", "uuid": "b77365e5-2b0c-4141-b917-c03b7c68e935" }
+    ],
+    "license": { "spdx": "CC0" }
   }
 }
 ```
@@ -100,20 +97,33 @@ The `spdx` form is RECOMMENDED.
 Where multiple fields are given, implementations SHOULD prefer fields at the top of the list to fields at the bottom,
 and MAY treat subsequent fields as redundant.
 
-| Field Name | Type   | Description                                                                                          |
-| ---------- | ------ | ---------------------------------------------------------------------------------------------------- |
-| spdx       | string | **RECOMMENDED**. An [SPDX license identifier](https://spdx.org/licenses/).                           |
-| url        | string | A URL to the full text of the license, ideally using the HTTPS scheme, preferably in plain text.     |
-| text       | string | The full JSON-encoded text of the license.                                                           |
-| file       | string | A relative path from this Zarr node to an object containing the text of the license.                 |
-| path       | string | A relative path from this Zarr node to a Zarr node with license metadata, whose license is the same. |
+| Field Name | Type   | Description                                                                          |
+| ---------- | ------ | ------------------------------------------------------------------------------------ |
+| spdx       | string | **RECOMMENDED**. An [SPDX license expression](https://spdx.org/licenses/).           |
+| url        | string | A URL to the full text of the license.                                               |
+| text       | string | The full JSON-encoded text of the license.                                           |
+| file       | string | A relative path from this Zarr node to an object containing the text of the license. |
+| path       | string | A relative path from this Zarr node to a Zarr node with explicit license metadata.   |
 
 Some licenses require further information for attribution purposes.
 Such attribution information is out of scope for this convention.
 
+SPDX expressions support arbitrary combinations of licenses with `AND`, `OR`, parentheses `()`, and `WITH` exceptions.
+Other forms representing similar combinations MUST contain all relevant license and exception texts.
+
+Data which explicitly grants no license SHOULD use `"license": {"spdx": "NONE"}`.
+
 ### Additional Field Information
 
-#### `"file"` (`license[*].file`)
+#### `"url"` (`license.url`)
+
+Where possible, this should use the HTTPS scheme.
+The endpoint should return plain text in response to a standard GET request, ideally with no or minimal markup.
+
+For common licenses, multiple URLs may resolve to identical license text.
+It is RECOMMENDED to use "more canonical" sources (e.g. an apache license from the apache domain).
+
+#### `"file"` (`license.file`)
 
 Paths are relative to the Zarr node (i.e. the prefix/ "directory" containing the metadata file), using POSIX semantics.
 Ancestor prefixes MAY be traversed with `..`.
@@ -128,24 +138,25 @@ Implementations SHOULD treat the data as unlicensed if the reference cannot be r
 
 **WARNING**: Rootward references (`..`) can return misleading information if any indirection takes place in the hierarchy (e.g. file system mounts or symlinks).
 
-#### `"path"` (`license[*].path`)
+#### `"path"` (`license.path`)
 
 The rules around resolving relative paths is as described in the `file` section above, with the same warnings.
+
+While `file` resolves to a stored object, `path` should resolve to a prefix representing a zarr node (group or array).
+i.e. the metadata document for the node would be retrieved by appending `/zarr.json` to the `path` string.
 
 When resolving a `path` reference, implementations MUST take care to raise an error on cycles
 (e.g. node A's license refers to node B and node B's license refers to node A).
 
 ## Known Implementations
 
-This section helps potential implementers assess the convention's maturity and adoption, and provides a way for the community to collaborate on future revisions.
-
 ### Libraries and Tools
 
-<!-- - **[Library/Tool Name](https://link-to-repo)** - Brief description of the implementation
-  - Language: Python/JavaScript/Rust/etc.
-  - Status: Experimental/Stable/Production
-  - Maintainer: @github-handle
-  - Since: Version X.Y or Date -->
+- **[zarrs_conventions_license(https://github.com/clbarnes/zarrs_conventions/tree/main/zarrs_conventions_license)** - Brief description of the implementation
+  - Language: Rust
+  - Status: Experimental
+  - Maintainer: @clbarnes
+  - Since: 2025-12-30
 
 ### Datasets Using This Convention
 
