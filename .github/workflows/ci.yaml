@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: latest
           cache: npm
-      - run: npm install
+      - run: npm ci
       - run: npm run fmt
       - run: git diff --exit-code --minimal
 
@@ -31,5 +31,5 @@ jobs:
         with:
           node-version: latest
           cache: npm
-      - run: npm install
+      - run: npm ci
       - run: npm run test
